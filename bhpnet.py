@@ -83,8 +83,6 @@ def main():
     if listen:
         server_loop()
 
-main()        
-
 def client_sender(buffer):
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -136,7 +134,7 @@ def server_loop():
     server.bind((target,port))
     server.listen(5)
     
-    while TRUE:
+    while True:
       client_socket,addr = server.accept()
       
       #spin off a thread to handle our new client
@@ -206,3 +204,4 @@ def client_handler(client_socket):
       
       # send back the response
       client_socket.send(response)
+main()
