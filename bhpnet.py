@@ -147,7 +147,7 @@ def run_command(command):
   
   # run the command and get the output back
   try:
-    output = subprocess.check_output(command,stderr=subprocess.STDOUT,shell=true)
+    output = subprocess.check_output(command,stderr=subprocess.STDOUT, shell=True)
   except:
     output = "Failed to execute command.\r\n"
     
