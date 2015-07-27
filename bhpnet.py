@@ -128,7 +128,7 @@ def client_handler(client_socket):
       #ackowledge that we wrote the file out
       client_socket.send("Successfully saved file to %s\r\n" % upload_destination)
     except:
-      client_socket.send("Failed to save file to %s\r\n" % upload_destionation)
+      client_socket.send("Failed to save file to %s\r\n" % upload_destination)
   
   # check for command execution
   if len(execute):
