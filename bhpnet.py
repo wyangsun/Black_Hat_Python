@@ -90,7 +90,7 @@ def client_sender(buffer):
     try:
 
         # connect to our target host
-        client.connect(target,port)
+        client.connect((target,port))
 
         if len(buffer):
             client.send(buffer)
@@ -103,7 +103,7 @@ def client_sender(buffer):
 
                     data = client.recv(4096)
                     recv_len = len(data)
-                    response += data
+                    response+= data
 
                     if recv_len < 4096:
                         break
@@ -138,7 +138,7 @@ def server_loop():
       client_socket,addr = server.accept()
       
       #spin off a thread to handle our new client
-      client_thread = threading.Thread(target=client_hander,args=(client_socket,))
+      client_thread = threading.Thread(target=client_handler,args=(client_socket,))
       client_thread.start()
       
 def run_command(command):
