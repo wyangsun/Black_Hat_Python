@@ -4,7 +4,7 @@ import getopt
 import threading
 import subprocess
 
-# define some global variables
+# define some global variables设置一些全局变量
 listen = False
 command = False
 upload = False
@@ -36,13 +36,13 @@ def client_sender(buffer):
 
     try:
 
-        # connect to our target host
+        # connect to our target host连接到目标主机
         client.connect((target,port))
 
         if len(buffer):
             client.send(buffer)
             while True:
-                # now wait for data back
+                # now wait for data back现在等待一个数据返回
                 recv_len = 1
                 response = ""
 
@@ -56,24 +56,24 @@ def client_sender(buffer):
                         break
                 print response,
 
-                # wait for more input
+                # wait for more input等待更多地输入
                 buffer = raw_input("")
                 buffer += "\n"
 
-                # send it off
+                # send it off发送数据出去
                 client.send(buffer)
 
     except:
         print "[*] Exception! Exiting."
 
-        # tear down the connection
+        # tear down the connection关闭连接
         client.close()
         
 #
 def server_loop():
     global target
 
-    # if no target is defined we listen on all interfaces
+    # if no target is defined we listen on all interfaces如果没设置目标地址，我们就监听所有接口
     if not len(target):
         target = "0.0.0.0"
         
@@ -84,21 +84,21 @@ def server_loop():
     while True:
       client_socket,addr = server.accept()
       
-      #spin off a thread to handle our new client
+      #spin off a thread to handle our new client这只一个新线程来保持新的客户端
       client_thread = threading.Thread(target=client_handler, args=(client_socket,))
       client_thread.start()
       
 def run_command(command):
-    # trim the newline
+    # trim the newline修剪换行
     command = command.rstrip()
   
-    # run the command and get the output back
+    # run the command and get the output back运行命令并得到返回输出
     try:
         output = subprocess.check_output(command,stderr=subprocess.STDOUT, shell=True)
     except:
         output = "Failed to execute command.\r\n"
     
-    # send the output back to the client
+    # send the output back to the client发送返回输出给客户
     return output
   
 def client_handler(client_socket):
@@ -106,11 +106,11 @@ def client_handler(client_socket):
     global execute
     global command
     
-    # check for upload
+    # check for upload检查上传
     if len(upload_destination):
-        # read in all of the bytes and write to our destination
+        # read in all of the bytes and write to our destination读取我们目标所有字节
         file_buffer = ""
-        # keep reading data until none is available
+        # keep reading data until none is available保持读取数据直到没有可用的
         while True:
             data = client_socket.recv(1024)
       
