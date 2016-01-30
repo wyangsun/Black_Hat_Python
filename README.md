@@ -1,4 +1,4 @@
 # Black_Hat_Python
 Black_Hat_Python
 
-Read book and tpye code
+Read book and code
