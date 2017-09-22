@@ -2,8 +2,8 @@ import socket
 import os
 import struct
 from ctypes import *
-# host to listen on
-host = "10.10.3.164"
+# host to listen on. change to your ip.
+host = "172.31.1.24"
 # our IP header
 class IP(Structure):
 	_fields_ = [
@@ -16,8 +16,11 @@ class IP(Structure):
 		("ttl",			c_ubyte),
 		("protocol_num",        c_ubyte),
 		("sum",			c_ushort),
-		("src",			c_ulong),
-		("dst",			c_ulong)
+		# ("src", c_ulong),
+		# ("dst", c_ulong)
+		# MacOS us c_uint32
+		("src", c_uint32),
+		("dst", c_uint32)
 	]
 
 	def __new__(self, socket_buffer=None):
